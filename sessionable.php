@@ -16,6 +16,8 @@ add_action( 'wp_login', 'session_destroy' );
 
 function sessionable_start() {
 	if ( ! session_id() ) {
+		$id = md5( microtime().$_SERVER['REMOTE_ADDR'] );
+		session_id( $id );
 		session_start();
 	}
 }
